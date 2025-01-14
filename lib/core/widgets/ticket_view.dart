@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_app/core/res/styles/app_styles.dart';
+import 'package:ticket_app/core/widgets/app_column_text_layout.dart';
 import 'package:ticket_app/core/widgets/app_layoutbuilder_widget.dart';
 import 'package:ticket_app/core/widgets/big_circle.dart';
 import 'package:ticket_app/core/widgets/big_dot.dart';
@@ -7,11 +8,13 @@ import 'package:ticket_app/core/widgets/text_style_fourth.dart';
 import 'package:ticket_app/core/widgets/text_style_third.dart';
 
 class TicketView extends StatelessWidget {
-  const TicketView({super.key});
+  final Map<String, dynamic> ticket;
+  const TicketView({super.key, required this.ticket});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return SizedBox(
       width: size.width * 0.85,
       height: 189,
@@ -33,10 +36,11 @@ class TicketView extends StatelessWidget {
                   Row(
                     children: [
                       TextStyleThird(
-                        text: "NYC",
+                        text: ticket["from"]["code"],
                       ),
                       Expanded(child: Container()),
                       BigDot(),
+                      //ticket flying icon
                       Expanded(
                           child: Stack(
                         children: [
@@ -60,7 +64,7 @@ class TicketView extends StatelessWidget {
                       BigDot(),
                       Expanded(child: Container()),
                       TextStyleThird(
-                        text: "LDN",
+                        text: ticket["to"]["code"],
                       ),
                     ],
                   ),
@@ -71,14 +75,15 @@ class TicketView extends StatelessWidget {
                   Row(
                     children: [
                       SizedBox(
-                          width: 100, child: TextStyleFourth(text: "New York")),
+                          width: 100,
+                          child: TextStyleFourth(text: ticket["from"]["name"])),
                       Expanded(child: Container()),
-                      TextStyleFourth(text: "8H 30M"),
+                      TextStyleFourth(text: ticket["flying_time"]),
                       Expanded(child: Container()),
                       SizedBox(
                         width: 100,
                         child: TextStyleFourth(
-                          text: "London",
+                          text: ticket["to"]["name"],
                           align: TextAlign.end,
                         ),
                       ),
@@ -115,50 +120,27 @@ class TicketView extends StatelessWidget {
                 children: [
                   //show departer and destination with icons first line
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "1 MAY",
-                        style: AppStyles.headLineStyle3
-                            .copyWith(color: Colors.white),
+                      AppColumnTextLayout(
+                        alignment: CrossAxisAlignment.start,
+                        topText: ticket["date"],
+                        bottomText: "Date",
                       ),
-                      Expanded(child: Container()),
-                      Text(
-                        "08:00 AM",
-                        style: AppStyles.headLineStyle3
-                            .copyWith(color: Colors.white),
+                      AppColumnTextLayout(
+                        alignment: CrossAxisAlignment.center,
+                        topText: ticket["departure_time"],
+                        bottomText: "Departure time",
                       ),
-                      Expanded(child: Container()),
-                      Text(
-                        "25",
-                        style: AppStyles.headLineStyle3
-                            .copyWith(color: Colors.white),
+                      AppColumnTextLayout(
+                        alignment: CrossAxisAlignment.end,
+                        topText: ticket["number"].toString(),
+                        bottomText: "Number",
                       ),
                     ],
                   ),
                   SizedBox(
                     height: 3,
-                  ),
-                  //show departer and destination names with time
-                  Row(
-                    children: [
-                      Text(
-                        "Date",
-                        style: AppStyles.headLineStyle4
-                            .copyWith(color: Colors.white),
-                      ),
-                      Expanded(child: Container()),
-                      Text(
-                        "Departure time",
-                        style: AppStyles.headLineStyle4
-                            .copyWith(color: Colors.white),
-                      ),
-                      Expanded(child: Container()),
-                      Text(
-                        "Number",
-                        style: AppStyles.headLineStyle4
-                            .copyWith(color: Colors.white),
-                      ),
-                    ],
                   ),
                 ],
               ),
