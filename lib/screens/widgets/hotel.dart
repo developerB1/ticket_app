@@ -3,7 +3,8 @@ import 'package:ticket_app/core/res/media.dart';
 import 'package:ticket_app/core/res/styles/app_styles.dart';
 
 class Hotel extends StatelessWidget {
-  const Hotel({super.key});
+  final Map<String, dynamic> hotel;
+  const Hotel({super.key, required this.hotel});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class Hotel extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage(AppMedia.hotelRoom),
+                image: AssetImage("assets/images/${hotel['image']}"),
               ),
             ),
           ),
@@ -39,7 +40,7 @@ class Hotel extends StatelessWidget {
               left: 15,
             ),
             child: Text(
-              "Open Space",
+              hotel['place'],
               style:
                   AppStyles.headLineStyle1.copyWith(color: AppStyles.kakiColor),
             ),
@@ -52,7 +53,7 @@ class Hotel extends StatelessWidget {
               left: 15,
             ),
             child: Text(
-              "London",
+              hotel['destination'],
               style: AppStyles.headLineStyle3.copyWith(color: Colors.white),
             ),
           ),
@@ -64,7 +65,7 @@ class Hotel extends StatelessWidget {
               left: 15,
             ),
             child: Text(
-              "\$25/Night",
+              "\$${hotel['price']}/Night",
               style:
                   AppStyles.headLineStyle1.copyWith(color: AppStyles.kakiColor),
             ),
