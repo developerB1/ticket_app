@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ticket_app/core/res/styles/app_styles.dart';
 
 class AppTicketTabs extends StatelessWidget {
   const AppTicketTabs({super.key});
@@ -9,7 +10,7 @@ class AppTicketTabs extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50),
-        color: Color(0xFFF4F6FD),
+        color: AppStyles.ticketTabColor,
       ),
       child: Row(
         children: [
