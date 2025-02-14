@@ -9,5 +9,4 @@ class AppRoutes {
 
   static const hotelDetail = "/hotel_detail";
 
-  static const ticketView = "/ticket_view";
 }

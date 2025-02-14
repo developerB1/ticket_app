@@ -16,18 +16,21 @@ class TicketScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppStyles.bgColor,
+      appBar: AppBar(
+        title: Text("Tickets"),
+      ),
       body: Stack(
         children: [
           ListView(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             children: [
-              SizedBox(
-                height: 40,
-              ),
-              Text(
-                "Tickets",
-                style: AppStyles.headLineStyle1,
-              ),
+              // SizedBox(
+              //   height: 40,
+              // ),
+              // Text(
+              //   "Tickets",
+              //   style: AppStyles.headLineStyle1,
+              // ),
               SizedBox(
                 height: 20,
               ),

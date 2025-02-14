@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_app/core/utils/app_json.dart';
+import 'package:ticket_app/core/utils/app_routes.dart';
 import 'package:ticket_app/core/widgets/ticket_view.dart';
 
 class AllTickets extends StatelessWidget {
@@ -20,6 +21,8 @@ class AllTickets extends StatelessWidget {
                         onTap: () {
                           var index = ticketList.indexOf(singleTicket);
                           print("Ticket Clicked $index");
+                          Navigator.pushNamed(context, AppRoutes.ticketScreen,
+                              arguments: {"index": index});
                         },
                         child: Container(
                           margin: EdgeInsets.only(bottom: 20),
