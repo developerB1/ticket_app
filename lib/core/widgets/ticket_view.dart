@@ -32,7 +32,9 @@ class TicketView extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  color: isColor == null ? AppStyles.ticketBlue : Colors.white,
+                  color: isColor == null
+                      ? AppStyles.ticketBlue
+                      : AppStyles.ticketColor,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(21),
                       topRight: Radius.circular(21))),
@@ -43,9 +45,12 @@ class TicketView extends StatelessWidget {
                     children: [
                       TextStyleThird(
                         text: ticket["from"]["code"],
+                        isColor: isColor,
                       ),
                       Expanded(child: Container()),
-                      BigDot(),
+                      BigDot(
+                        isColor: isColor,
+                      ),
                       //ticket flying icon
                       Expanded(
                           child: Stack(
@@ -61,16 +66,21 @@ class TicketView extends StatelessWidget {
                               angle: 1.58,
                               child: Icon(
                                 Icons.local_airport_rounded,
-                                color: Colors.white,
+                                color: isColor == null
+                                    ? Colors.white
+                                    : AppStyles.planeSecondColor,
                               ),
                             ),
                           ),
                         ],
                       )),
-                      BigDot(),
+                      BigDot(
+                        isColor: isColor,
+                      ),
                       Expanded(child: Container()),
                       TextStyleThird(
                         text: ticket["to"]["code"],
+                        isColor: isColor,
                       ),
                     ],
                   ),
@@ -82,15 +92,22 @@ class TicketView extends StatelessWidget {
                     children: [
                       SizedBox(
                           width: 100,
-                          child: TextStyleFourth(text: ticket["from"]["name"])),
+                          child: TextStyleFourth(
+                            text: ticket["from"]["name"],
+                            isColor: isColor,
+                          )),
                       Expanded(child: Container()),
-                      TextStyleFourth(text: ticket["flying_time"]),
+                      TextStyleFourth(
+                        text: ticket["flying_time"],
+                        isColor: isColor,
+                      ),
                       Expanded(child: Container()),
                       SizedBox(
                         width: 100,
                         child: TextStyleFourth(
                           text: ticket["to"]["name"],
                           align: TextAlign.end,
+                          isColor: isColor,
                         ),
                       ),
                     ],
