@@ -9,8 +9,22 @@ import 'package:ticket_app/core/widgets/ticket_view.dart';
 import 'package:ticket_app/screens/search/widgets/app_ticket_tabs.dart';
 import 'package:ticket_app/screens/ticket/widgets/ticket_position_circle.dart';
 
-class TicketScreen extends StatelessWidget {
+class TicketScreen extends StatefulWidget {
   const TicketScreen({super.key});
+
+  @override
+  State<TicketScreen> createState() => _TicketScreenState();
+}
+
+class _TicketScreenState extends State<TicketScreen> {
+  late int ticketIndex = 0;
+
+  @override
+  void didChangeDependencies() {
+    var args = ModalRoute.of(context)!.settings.arguments as Map;
+    ticketIndex = args["index"];
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +32,12 @@ class TicketScreen extends StatelessWidget {
       backgroundColor: AppStyles.bgColor,
       appBar: AppBar(
         title: Text("Tickets"),
+        backgroundColor: AppStyles.bgColor,
       ),
       body: Stack(
         children: [
           ListView(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
             children: [
               // SizedBox(
               //   height: 40,
@@ -44,7 +59,7 @@ class TicketScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(left: 16),
                 child: TicketView(
-                  ticket: ticketList[0],
+                  ticket: ticketList[ticketIndex],
                   isColor: true,
                 ),
               ),
@@ -187,7 +202,7 @@ class TicketScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(left: 16),
                 child: TicketView(
-                  ticket: ticketList[0],
+                  ticket: ticketList[ticketIndex],
                 ),
               ),
             ],
