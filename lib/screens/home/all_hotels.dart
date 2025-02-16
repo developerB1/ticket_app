@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_app/core/res/styles/app_styles.dart';
 import 'package:ticket_app/core/utils/app_json.dart';
-import 'package:ticket_app/screens/home/widgets/hotel.dart';
+import 'package:ticket_app/core/utils/app_routes.dart';
+// import 'package:ticket_app/screens/home/widgets/hotel.dart';
 
 class AllHotels extends StatelessWidget {
   const AllHotels({super.key});
@@ -42,10 +43,10 @@ class HotelGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        
+        Navigator.pushNamed(context, AppRoutes.hotelDetail);
       },
       child: Container(
         padding: EdgeInsets.all(8.0),
@@ -81,8 +82,8 @@ class HotelGridView extends StatelessWidget {
               ),
               child: Text(
                 hotel['place'],
-                style:
-                    AppStyles.headLineStyle3.copyWith(color: AppStyles.kakiColor),
+                style: AppStyles.headLineStyle3
+                    .copyWith(color: AppStyles.kakiColor),
               ),
             ),
             Row(
@@ -93,7 +94,8 @@ class HotelGridView extends StatelessWidget {
                   ),
                   child: Text(
                     hotel['destination'],
-                    style: AppStyles.headLineStyle3.copyWith(color: Colors.white),
+                    style:
+                        AppStyles.headLineStyle3.copyWith(color: Colors.white),
                   ),
                 ),
                 SizedBox(

@@ -1,0 +1,2 @@
+C:/Users/B1/Desktop/Projects/FlutterTraining/ticket_app/android/app/.cxx/RelWithDebInfo/6p3s2k5q/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/B1/Desktop/Projects/FlutterTraining/ticket_app/android/app/.cxx/RelWithDebInfo/6p3s2k5q/x86_64/CMakeFiles/rebuild_cache.dir
