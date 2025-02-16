@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:ticket_app/core/res/styles/app_styles.dart';
+import 'package:ticket_app/core/utils/app_json.dart';
 
-class HotelDetail extends StatelessWidget {
+class HotelDetail extends StatefulWidget {
   const HotelDetail({super.key});
+
+  @override
+  State<HotelDetail> createState() => _HotelDetailState();
+}
+
+class _HotelDetailState extends State<HotelDetail> {
+  late int index = 0;
+  @override
+  void didChangeDependencies() {
+    var args = ModalRoute.of(context)!.settings.arguments as Map;
+    index = args["index"];
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +27,56 @@ class HotelDetail extends StatelessWidget {
             expandedHeight: 300.0,
             floating: false,
             pinned: true,
+            leading: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppStyles.primaryColor,
+                  ),
+                  child: Icon(Icons.arrow_back, color: Colors.white),
+                ),
+              ),
+            ),
             flexibleSpace: FlexibleSpaceBar(
-              title: Text("Hotel Name"),
-              background: Image.network("https://picsum.photos/600/400"),
+              // title: Text(hotelList[index]["place"],
+              //     style: TextStyle(color: Colors.white)),
+              background: Stack(
+                children: [
+                  Positioned.fill(
+                    child: Image.asset(
+                        "assets/images/${hotelList[index]["image"]}",
+                        fit: BoxFit.cover),
+                  ),
+                  Positioned(
+                    bottom: 20.0,
+                    right: 20.0,
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                      color: Colors.black.withOpacity(0.5),
+                      child: Text(
+                        hotelList[index]["place"],
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 10.0,
+                              color: AppStyles.primaryColor,
+                              offset: Offset(2.0, 2.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           SliverList(
@@ -35,7 +97,7 @@ class HotelDetail extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 200.0,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
