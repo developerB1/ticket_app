@@ -84,8 +84,9 @@ class _HotelDetailState extends State<HotelDetail> {
               [
                 Padding(
                   padding: EdgeInsets.all(16.0),
-                  child: Text(
-                      "Where Comfort Meets Elegance \n\nWelcome to Muster Hotel, your perfect retreat in [Location]. Whether you're visiting for business or leisure, our modern design, exceptional service, and prime location ensure a seamless and unforgettable stay. Stylish Accommodations \n\nRelax in our beautifully appointed rooms and suites, featuring [plush bedding, high-speed Wi-Fi, smart TVs, minibars, private balconies, etc.]. Each space is designed for comfort and convenience, offering a tranquil escape from the hustle and bustle.\n\nDining & Drinks \n\nSavor the flavors of [cuisine type] at [Hotel Restaurant Name], where our chefs craft delicious dishes using the finest local ingredients. Unwind with a signature cocktail at [Bar/Lounge Name], or grab a quick bite at [Café Name]. \n\nSignature Amenities \n\nInfinity Pool & Spa – Rejuvenate with a relaxing dip or a soothing spa treatment. \n\nFitness Center – Stay active with top-of-the-line gym facilities. \n\nBusiness & Event Spaces – Host meetings, conferences, or special occasions in our versatile venues. \n\nConcierge Services – From city tours to restaurant reservations, we take care of the details. \n\nDiscover [City/Region] \n\nIdeally located [mention proximity to landmarks, business districts, shopping centers, beaches, mountains, etc.], Muster Hotel places you at the heart of it all. Whether you're here for adventure, relaxation, or business, there's something for everyone. \n\nBook your stay today and experience the best of hospitality at Muster Hotel. \n\n"),
+                  child: ExpandedTextWidget(
+                    text: hotelList[index]["details"],
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(16.0),
@@ -101,11 +102,12 @@ class _HotelDetailState extends State<HotelDetail> {
                   height: 200.0,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
+                    itemCount: hotelList[index]["images"].length,
+                    itemBuilder: (context, imagesIndex) {
                       return Container(
                         margin: EdgeInsets.all(8),
-                        child: Image.network("https://picsum.photos/200/200"),
+                        child: Image.asset(
+                            "assets/images/${hotelList[index]["images"][imagesIndex]}"),
                       );
                     },
                   ),
@@ -115,6 +117,49 @@ class _HotelDetailState extends State<HotelDetail> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class ExpandedTextWidget extends StatefulWidget {
+  const ExpandedTextWidget({super.key, required this.text});
+  final String text;
+
+  @override
+  State<ExpandedTextWidget> createState() => _ExpandedTextWidgetState();
+}
+
+class _ExpandedTextWidgetState extends State<ExpandedTextWidget> {
+  bool isExpanded = false;
+  _toggleExpansion() {
+    setState(() {
+      isExpanded = !isExpanded;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var textWidget = Text(
+      widget.text,
+      maxLines: isExpanded ? null : 9,
+      overflow: isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
+    );
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        textWidget,
+        GestureDetector(
+          onTap: () {
+            _toggleExpansion();
+          },
+          child: Text(
+            isExpanded ? 'Less' : 'More',
+            style: AppStyles.textStyle.copyWith(
+              color: AppStyles.primaryColor,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
