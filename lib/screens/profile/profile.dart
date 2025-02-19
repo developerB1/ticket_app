@@ -309,7 +309,7 @@ class ProfileScreen extends StatelessWidget {
                 //text
                 InkWell(
                   onTap: () {
-                    print("tapped");
+                    // print("tapped");
                   },
                   child: Text(
                     "How to get more miles",

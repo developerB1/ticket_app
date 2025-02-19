@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:ticket_app/controller/text_expension_controller.dart';
 import 'package:ticket_app/core/res/styles/app_styles.dart';
 import 'package:ticket_app/core/utils/app_json.dart';
+import 'package:ticket_app/provider/text_expansion_provider.dart';
 
 class HotelDetail extends StatefulWidget {
   const HotelDetail({super.key});
@@ -123,38 +125,36 @@ class _HotelDetailState extends State<HotelDetail> {
   }
 }
 
-class ExpandedTextWidget extends StatelessWidget {
+class ExpandedTextWidget extends ConsumerWidget {
   ExpandedTextWidget({super.key, required this.text});
   final String text;
-  final TextExpensionController controller = Get.put(TextExpensionController());
 
   @override
-  Widget build(BuildContext context) {
-    return Obx(() {
-      var textWidget = Text(
-        text,
-        maxLines: controller.isExpanded.value ? null : 9,
-        overflow: controller.isExpanded.value
-            ? TextOverflow.visible
-            : TextOverflow.ellipsis,
-      );
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          textWidget,
-          GestureDetector(
-            onTap: () {
-              controller.toggleExpansion();
-            },
-            child: Text(
-              controller.isExpanded.value ? 'Less' : 'More',
-              style: AppStyles.textStyle.copyWith(
-                color: AppStyles.primaryColor,
-              ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    var provider = ref.watch(textExpansionNotifierProvider);
+    var textWidget = Text(
+      text,
+      maxLines: provider ? null : 9,
+      overflow: provider ? TextOverflow.visible : TextOverflow.ellipsis,
+    );
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        textWidget,
+        GestureDetector(
+          onTap: () {
+            ref
+                .watch(textExpansionNotifierProvider.notifier)
+                .toggleText(provider);
+          },
+          child: Text(
+            provider ? 'Less' : 'More',
+            style: AppStyles.textStyle.copyWith(
+              color: AppStyles.primaryColor,
             ),
           ),
-        ],
-      );
-    });
+        ),
+      ],
+    );
   }
 }
