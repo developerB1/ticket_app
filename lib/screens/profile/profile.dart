@@ -4,6 +4,7 @@ import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_app/core/res/media.dart';
 import 'package:ticket_app/core/res/styles/app_styles.dart';
+import 'package:ticket_app/core/widgets/heading_style.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -43,9 +44,9 @@ class ProfileScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Book Tickets",
-                    style: AppStyles.headLineStyle1,
+                  HeadingText(
+                    text: "Book Tickets",
+                    isColor: false,
                   ),
                   Text(
                     "New-York",
