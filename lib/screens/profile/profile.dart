@@ -1,10 +1,10 @@
-import 'dart:math';
-
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_app/core/res/media.dart';
 import 'package:ticket_app/core/res/styles/app_styles.dart';
+import 'package:ticket_app/core/widgets/app_column_text_layout.dart';
 import 'package:ticket_app/core/widgets/heading_style.dart';
+import 'package:ticket_app/core/widgets/text_style_third.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -25,6 +25,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Logo
               Container(
@@ -98,7 +99,228 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              Expanded(
+                child: Container(),
+              ),
+              Text(
+                "Edit",
+                style: TextStyle(
+                  color: AppStyles.primaryColor,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
             ],
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          //divider
+          Divider(
+            color: Colors.grey.shade300,
+          ),
+          //show the card
+          Stack(
+            children: [
+              Container(
+                height: 90,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppStyles.primaryColor,
+                  borderRadius: BorderRadius.circular(18),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25,
+                  vertical: 20,
+                ),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      maxRadius: 25,
+                      backgroundColor: Colors.white,
+                      child: Icon(
+                        FluentSystemIcons.ic_fluent_lightbulb_filament_filled,
+                        color: AppStyles.primaryColor,
+                        size: 27,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextStyleThird(
+                          text: "You'v got new award",
+                          isColor: null,
+                        ),
+                        Text(
+                          "You have 95 flights in a year",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white.withOpacity(0.8),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: -40,
+                right: -45,
+                child: Container(
+                  padding: EdgeInsets.all(30),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      width: 18,
+                      color: Color(0xFF264CD2),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          Text(
+            "Accumulated miles",
+            style: AppStyles.headLineStyle2,
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 15,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(18),
+              color: AppStyles.bgColor,
+            ),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  "192802",
+                  style: TextStyle(
+                    fontSize: 45,
+                    color: AppStyles.textColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                //row->text
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Miles accurued",
+                      style: AppStyles.headLineStyle4.copyWith(
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      "16 July",
+                      style: AppStyles.headLineStyle4.copyWith(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                //divider
+                Divider(
+                  color: Colors.grey.shade300,
+                ),
+                //row->column
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppColumnTextLayout(
+                      topText: "23 042",
+                      bottomText: "Miles",
+                      alignment: CrossAxisAlignment.start,
+                      isColor: false,
+                    ),
+                    AppColumnTextLayout(
+                      topText: "Airline CO",
+                      bottomText: "Received from",
+                      alignment: CrossAxisAlignment.end,
+                      isColor: false,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Divider(
+                  color: Colors.grey.shade300,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppColumnTextLayout(
+                      topText: "24",
+                      bottomText: "Miles",
+                      alignment: CrossAxisAlignment.start,
+                      isColor: false,
+                    ),
+                    AppColumnTextLayout(
+                      topText: "Mc Donalds",
+                      bottomText: "Received from",
+                      alignment: CrossAxisAlignment.end,
+                      isColor: false,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Divider(
+                  color: Colors.grey.shade300,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppColumnTextLayout(
+                      topText: "53 132",
+                      bottomText: "Dbestech",
+                      alignment: CrossAxisAlignment.start,
+                      isColor: false,
+                    ),
+                    AppColumnTextLayout(
+                      topText: "Airline CO",
+                      bottomText: "Received from",
+                      alignment: CrossAxisAlignment.end,
+                      isColor: false,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                //text
+                InkWell(
+                  onTap: () {
+                    print("tapped");
+                  },
+                  child: Text(
+                    "How to get more miles",
+                    style: AppStyles.textStyle.copyWith(
+                      color: AppStyles.primaryColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
