@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ticket_app/bloc/bottom_nav_bloc.dart';
+import 'package:ticket_app/bloc/text_expansion_blocs.dart';
 // import 'package:get/get.dart';
 import 'package:ticket_app/core/utils/app_routes.dart';
 import 'package:ticket_app/screens/home/all_hotels.dart';
@@ -18,15 +21,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        AppRoutes.homePage: (context) => BottomNavBar(),
-        AppRoutes.allTickets: (context) => AllTickets(),
-        AppRoutes.ticketScreen: (context) => TicketScreen(),
-        AppRoutes.allHotels: (context) => AllHotels(),
-        AppRoutes.hotelDetail: (context) => const HotelDetail(),
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => BottomNavBloc(),
+        ),
+        BlocProvider(
+          create: (_) => TextExpansionBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          AppRoutes.homePage: (context) => BottomNavBar(),
+          AppRoutes.allTickets: (context) => AllTickets(),
+          AppRoutes.ticketScreen: (context) => TicketScreen(),
+          AppRoutes.allHotels: (context) => AllHotels(),
+          AppRoutes.hotelDetail: (context) => const HotelDetail(),
+        },
+      ),
     );
   }
 }
