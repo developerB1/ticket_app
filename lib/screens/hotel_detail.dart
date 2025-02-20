@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ticket_app/bloc/text_expansion_blocs.dart';
 import 'package:ticket_app/bloc/text_expansion_events.dart';
 import 'package:ticket_app/bloc/text_expansion_states.dart';
-// import 'package:get/get.dart';
-// import 'package:ticket_app/controller/text_expension_controller.dart';
 import 'package:ticket_app/core/res/styles/app_styles.dart';
 import 'package:ticket_app/core/utils/app_json.dart';
-import 'package:ticket_app/provider/text_expansion_provider.dart';
 
 class HotelDetail extends StatefulWidget {
   const HotelDetail({super.key});

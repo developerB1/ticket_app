@@ -1,13 +1,9 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ticket_app/bloc/bottom_nav_bloc.dart';
 import 'package:ticket_app/bloc/bottom_nav_events.dart';
 import 'package:ticket_app/bloc/bottom_nav_states.dart';
-// import 'package:get/get.dart';
-// import 'package:ticket_app/controller/bottom_nav_controller.dart';
-import 'package:ticket_app/provider/bottom_nav_provider.dart';
 import 'package:ticket_app/screens/home/home_screen.dart';
 import 'package:ticket_app/screens/profile/profile.dart';
 import 'package:ticket_app/screens/search/search_screen.dart';
